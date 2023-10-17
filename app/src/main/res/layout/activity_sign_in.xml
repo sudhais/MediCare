@@ -4,35 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroud"
+    android:background="@drawable/bg_view"
     tools:context=".activity.SignIn">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="375dp"
-        android:layout_height="393dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="46dp"
-        app:cardCornerRadius="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:foregroundGravity="center"
+        app:cardCornerRadius="20dp"
         app:cardElevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingStart="7dp"
-                android:text="User Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="36dp"
+                android:padding="16dp"
+                android:text="Welcome To Telemedicine!"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/txt_user"
@@ -42,19 +50,10 @@
                 android:layout_marginLeft="16dp"
                 android:ems="10"
                 android:hint="Enter the user name"
+
                 android:inputType="text"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingStart="7dp"
-                android:text="Password"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txt_pass"
@@ -70,27 +69,22 @@
 
             <Button
                 android:id="@+id/btn_signin"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/buttonshape"
-                android:text="User Sign in"
+                android:text="Sign in"
                 android:textColor="@color/white" />
 
-            <Button
-                android:id="@+id/btn_admin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttonshape"
-                android:text="Admin Sign in"
-                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/txt_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="Create a new account"
                 android:textAlignment="center"
                 android:textColor="@color/black"

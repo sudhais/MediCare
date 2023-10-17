@@ -19,7 +19,6 @@ class SignIn : ComponentActivity() {
         setContentView(R.layout.activity_sign_in)
 
         var sigup:TextView = findViewById(R.id.txt_signup)
-        var admin:Button = findViewById(R.id.btn_admin)
         var user:EditText = findViewById(R.id.txt_user)
         var password:EditText = findViewById(R.id.txt_pass)
         var signin:Button = findViewById(R.id.btn_signin)

@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroud"
+    android:background="@drawable/bg_view"
     tools:context=".activity.SignUp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="379dp"
-        android:layout_height="555dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="46dp"
-        app:cardCornerRadius="15dp"
+        android:layout_marginStart="16dp"
+        app:cardCornerRadius="20dp"
         app:cardElevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -25,14 +26,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingStart="7dp"
-                android:text="User Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="36dp"
+                android:padding="16dp"
+                android:text="Welcome To Telemedicine!"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/txt_user"
@@ -46,16 +51,6 @@
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="7dp"
-                android:text="Email "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
             <EditText
                 android:id="@+id/txt_email"
                 android:layout_width="match_parent"
@@ -66,16 +61,6 @@
                 android:hint="Enter the Email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingStart="7dp"
-                android:text="Password"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txt_pass"
@@ -88,18 +73,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:passwordToggleEnabled="true"
-                />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="7dp"
-                android:text="Re-Type password"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                app:passwordToggleEnabled="true" />
 
             <EditText
                 android:id="@+id/txt_rePass"
@@ -114,8 +88,9 @@
 
             <Button
                 android:id="@+id/btn_signup"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/buttonshape"
@@ -127,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="Already Registered, Sign in"
                 android:textAlignment="center"
                 android:textColor="@color/black"

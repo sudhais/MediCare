@@ -10,7 +10,8 @@
     <color name="colorPrimary">#512da8</color>
     <color name="colorPrimaryDark">#512da8</color>
     <color name="colorAccent">#8165c0</color>
-
+    <color name="backgroundcolor">#FCFCFC</color>
+    <color name="tealGreen">#B8EFF3</color>
     <color name="yellow">#FFC801</color>
     <color name="theme">#11105A</color>
 </resources>
