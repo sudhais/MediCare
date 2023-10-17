@@ -35,7 +35,7 @@ class UserForm(
         return if(password.isEmpty()){
             validateForm.Empty("Username is empty")
         }else if (password.length <= 6) {
-            validateForm.Invalid("Name should minimum 8 letters")
+            validateForm.Invalid("Name should minimum 6 letters")
         }else{
             validateForm.Valid
         }
@@ -46,7 +46,7 @@ class UserForm(
         return if(rePassword.isEmpty()){
             validateForm.Empty("password is empty")
         }else if (rePassword.length <= 6) {
-            validateForm.Invalid("password should minimum 8 letters")
+            validateForm.Invalid("password should minimum 6 letters")
         }else if (!password.equals(rePassword)) {
             validateForm.Invalid("Password does not match")
         }else{

@@ -1,9 +1,7 @@
 package com.example.medicare.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,9 +12,6 @@ import com.example.medicare.database.FirebaseHelper
 import com.example.medicare.models.UserModel
 import com.example.medicare.models.validations.UserForm
 import com.example.medicare.models.validations.validateForm
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class SignUp : ComponentActivity() {
 
@@ -31,7 +26,7 @@ class SignUp : ComponentActivity() {
         var password:EditText = findViewById(R.id.txt_pass)
         var rePassword:EditText = findViewById(R.id.txt_rePass)
         var signup:Button = findViewById(R.id.btn_signup)
-        var signIn:TextView = findViewById(R.id.txt_signIn)
+        var signIn:TextView = findViewById(R.id.txt_signin)
 
         signup.setOnClickListener {
 
@@ -107,13 +102,19 @@ class SignUp : ComponentActivity() {
                     password.text.toString(),
                 )
                 //add the user into the firebase
-                firebaseHelper.createUser(user,{
-                    Toast.makeText(this,"Successfully registered", Toast.LENGTH_LONG).show()
-                    intent = Intent(this, SignIn::class.java)
-                    startActivity(intent)
-                    finish()
+                firebaseHelper.createUser(user,this ,{
+
                 },{
                     Toast.makeText(this,"Failed to registered", Toast.LENGTH_LONG).show()
+                },{check ->
+                    if (check){
+                        Toast.makeText(this,"Successfully registered", Toast.LENGTH_LONG).show()
+                        intent = Intent(this, SignIn::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
+
                 })
 
 
@@ -123,6 +124,5 @@ class SignUp : ComponentActivity() {
         }
     }
 
-    fun register(userForm: UserForm){
-    }
+
 }
