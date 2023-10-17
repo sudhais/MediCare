@@ -35,13 +35,22 @@ class SignIn : ComponentActivity() {
                 password.text.toString()
             )
 
-            firebaseHelper.validateUser(validUser,this){check ->
-                if (check){
-                    Toast.makeText(this,"Successfully loged in", Toast.LENGTH_LONG).show()
-                    intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+            if (validUser.user.equals("admin") && validUser.password.equals("admin")){
+                Toast.makeText(this,"Successfully loged in to admin page", Toast.LENGTH_LONG).show()
+                intent = Intent(this, AdminHome::class.java)
+                startActivity(intent)
+                finish()
+
+            }else{
+                firebaseHelper.validateUser(validUser,this){check ->
+                    if (check){
+                        Toast.makeText(this,"Successfully loged in", Toast.LENGTH_LONG).show()
+                        intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
+            }
             }
         }
 
@@ -49,4 +58,3 @@ class SignIn : ComponentActivity() {
 
 
     }
-}
