@@ -9,7 +9,6 @@
     <RelativeLayout
         android:layout_width="414dp"
         android:layout_height="75dp"
-        android:layout_marginStart="100dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
