@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "82031778615",
+    "firebase_url": "https://medicare-52833-default-rtdb.firebaseio.com",
+    "project_id": "medicare-52833",
+    "storage_bucket": "medicare-52833.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82031778615:android:de96f8b0c4f3367c7b98b2",
+        "android_client_info": {
+          "package_name": "com.example.medicare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQqzYoRMCKcw3gvBqhCBfdt736OMqyEHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
