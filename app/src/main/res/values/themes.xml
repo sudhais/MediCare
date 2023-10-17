@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Base.Theme.MediCare" parent="Theme.Material3.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/theme</item>
+    <item name="colorPrimary">#090C25</item>
     </style>
     <style name="Theme.MediCare" parent="Base.Theme.MediCare"/>
 <!--        <item name="android:layout_width">match_parent</item>-->
