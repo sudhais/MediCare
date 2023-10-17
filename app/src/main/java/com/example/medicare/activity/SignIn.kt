@@ -19,7 +19,6 @@ class SignIn : ComponentActivity() {
         setContentView(R.layout.activity_sign_in)
 
         var sigup:TextView = findViewById(R.id.txt_signup)
-        var admin:Button = findViewById(R.id.btn_admin)
         var user:EditText = findViewById(R.id.txt_user)
         var password:EditText = findViewById(R.id.txt_pass)
         var signin:Button = findViewById(R.id.btn_signin)
@@ -36,12 +35,20 @@ class SignIn : ComponentActivity() {
                 password.text.toString()
             )
 
-            firebaseHelper.validateUser(validUser,this){check ->
-                if (check){
-                    Toast.makeText(this,"Successfully loged in", Toast.LENGTH_LONG).show()
-                    intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+            if (validUser.user.equals("admin") && validUser.password.equals("admin")){
+                Toast.makeText(this,"Successfully loged in to admin page", Toast.LENGTH_LONG).show()
+                intent = Intent(this, AdminPage::class.java)
+                startActivity(intent)
+                finish()
+
+            }else{
+                firebaseHelper.validateUser(validUser,this){check ->
+                    if (check){
+                        Toast.makeText(this,"Successfully loged in", Toast.LENGTH_LONG).show()
+                        intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
         }
