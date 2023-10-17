@@ -116,11 +116,13 @@ class SignUp : ComponentActivity() {
 
 
                 })
-
-
-
             }
 
+        }
+
+        signIn.setOnClickListener {
+            var intent = Intent(this, SignIn::class.java)
+            startActivity(intent)
         }
     }
 
