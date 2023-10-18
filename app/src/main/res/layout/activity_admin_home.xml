@@ -53,7 +53,7 @@
         <!-- Action Button 2 -->
 
         <Button
-            android:id="@+id/buttonChat"
+            android:id="@+id/buttonArticle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"

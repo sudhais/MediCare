@@ -81,7 +81,7 @@
         <!-- Action Button 2 -->
 
         <Button
-            android:id="@+id/buttonChat"
+            android:id="@+id/buttonArticle"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
@@ -140,16 +140,33 @@
             app:cornerRadius="50dp" />
     </LinearLayout>
 
+
+    <Button
+        android:id="@+id/buttonReminder"
+        android:layout_width="158dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/backgroundcolor"
+        android:text="Reminder"
+        android:textColor="@android:color/black"
+        app:cornerRadius="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSecondRow" />
+
     <TextView
         android:id="@+id/textViewAboutUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
         android:padding="16dp"
         android:text="About Us"
-        android:textSize="20sp"
         android:textColor="@color/tealGreen"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutSecondRow" />
 
