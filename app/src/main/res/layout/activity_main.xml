@@ -87,7 +87,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:backgroundTint="@color/backgroundcolor"
-            android:text="Chat with Us"
+            android:text="Find Articles"
             android:textColor="@android:color/black"
             app:cornerRadius="50dp" />
 
