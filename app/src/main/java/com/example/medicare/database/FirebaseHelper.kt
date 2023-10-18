@@ -2,6 +2,7 @@ package com.example.medicare.database
 
 import android.content.Context
 import android.widget.Toast
+import com.example.medicare.models.MedicineModel
 import com.example.medicare.models.ReminderModel
 import com.example.medicare.models.UserModel
 import com.google.firebase.database.DataSnapshot
@@ -13,11 +14,17 @@ import com.google.firebase.database.ValueEventListener
 class FirebaseHelper {
     var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
 
-                    //User Functions
-    fun createUser(userModel: UserModel, context: Context, onSuccess: () -> Unit, onFailure: (Exception) -> Unit,onUserNull: (Boolean) -> Unit){
+    //User Functions
+    fun createUser(
+        userModel: UserModel,
+        context: Context,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit,
+        onUserNull: (Boolean) -> Unit
+    ) {
 
-        this.getSingleUserData(userModel.user!!){user ->
-            if (user == null){
+        this.getSingleUserData(userModel.user!!) { user ->
+            if (user == null) {
                 val taskRef = databaseReference.child("User").child(userModel.user!!)
                 taskRef.setValue(userModel)
                     .addOnSuccessListener {
@@ -28,7 +35,7 @@ class FirebaseHelper {
                         onFailure(exception)
                         onUserNull(false)
                     }
-            }else{
+            } else {
                 Toast.makeText(context, "user name already exist", Toast.LENGTH_SHORT).show()
                 onUserNull(false)
             }
@@ -36,7 +43,7 @@ class FirebaseHelper {
     }
 
 
-    fun getSingleUserData(id:String, callback: (UserModel?) -> Unit){
+    fun getSingleUserData(id: String, callback: (UserModel?) -> Unit) {
         var ref = databaseReference.child("User").child(id)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -55,17 +62,17 @@ class FirebaseHelper {
         })
     }
 
-    fun validateUser(userModel: UserModel, context: Context, userExist : (Boolean) -> Unit) {
+    fun validateUser(userModel: UserModel, context: Context, userExist: (Boolean) -> Unit) {
 
-        this.getSingleUserData(userModel.user!!){exist ->
-            if(exist != null) {
-                if(exist.password.equals(userModel.password)){
+        this.getSingleUserData(userModel.user!!) { exist ->
+            if (exist != null) {
+                if (exist.password.equals(userModel.password)) {
                     userExist(true)
-                }else {
+                } else {
                     Toast.makeText(context, "Wrong Password", Toast.LENGTH_SHORT).show()
                     userExist(false)
                 }
-            }else{
+            } else {
                 Toast.makeText(context, "User Name does not exist", Toast.LENGTH_SHORT).show()
                 userExist(false)
             }
@@ -73,10 +80,14 @@ class FirebaseHelper {
     }
 
 
-                    //User Reminder functions
+    //User Reminder functions
 
-    fun createUserReminder(reminder:ReminderModel, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
-        val taskRef = databaseReference.child(reminder.rid!!)
+    fun createUserReminder(
+        reminder: ReminderModel,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val taskRef = databaseReference.child("Reminder").child(reminder.rid!!)
 //        task.id = taskRef.key // Assign the generated key as the task ID
         taskRef.setValue(reminder)
             .addOnSuccessListener {
@@ -87,17 +98,17 @@ class FirebaseHelper {
             }
     }
 
-    fun getUsersReminder(userID:String, callback: (MutableList<ReminderModel>?) -> Unit) {
+    fun getUsersReminder(userID: String, callback: (MutableList<ReminderModel>?) -> Unit) {
         var ref = databaseReference.child("Reminder")
         ref.addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val reminderList = mutableListOf<ReminderModel>()
-                    if(snapshot.exists()){
+                    if (snapshot.exists()) {
                         for (dataSnapshot in snapshot.children) {
                             var task = dataSnapshot.getValue(ReminderModel::class.java)
 //                            println(task)
-                            if(task!!.userID.equals(userID)){
+                            if (task!!.userID.equals(userID)) {
                                 task?.let { reminderList.add(it) }
                             }
 
@@ -124,4 +135,48 @@ class FirebaseHelper {
             }
     }
 
+
+    //Medicine Fuctions
+    fun createMedicine(
+        medicine:MedicineModel,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val taskRef = databaseReference.child("Medicine").child(medicine.medID!!)
+        //        task.id = taskRef.key // Assign the generated key as the task ID
+        taskRef.setValue(medicine)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+
+    fun getAllMedicine(callback: (MutableList<MedicineModel>?) -> Unit) {
+        var ref = databaseReference.child("Medicine")
+        ref.addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val medicineList = mutableListOf<MedicineModel>()
+                    if (snapshot.exists()) {
+                        for (dataSnapshot in snapshot.children) {
+                            var task = dataSnapshot.getValue(MedicineModel::class.java)
+                            println(task)
+
+                            task?.let { medicineList.add(it) }
+
+
+                        }
+                        callback(medicineList)
+                    }
+                    callback(medicineList)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle errors
+                }
+            }
+        )
+    }
 }

@@ -43,6 +43,8 @@ class ReminderAdapter(private val reminderList: MutableList<ReminderModel>) : Re
 
         holder.btn_delete.setOnClickListener {
 
+            holder.btn_delete.setImageResource(R.drawable.selected_delete)
+
             val context = holder.itemView.context
             firebaseHelper.deleteUserReminder(current.rid!!, {
                 // Task creation was successful
