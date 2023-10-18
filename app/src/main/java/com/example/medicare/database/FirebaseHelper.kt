@@ -2,6 +2,7 @@ package com.example.medicare.database
 
 import android.content.Context
 import android.widget.Toast
+import com.example.medicare.models.ReminderModel
 import com.example.medicare.models.UserModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -12,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 class FirebaseHelper {
     var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
 
+                    //User Functions
     fun createUser(userModel: UserModel, context: Context, onSuccess: () -> Unit, onFailure: (Exception) -> Unit,onUserNull: (Boolean) -> Unit){
 
         this.getSingleUserData(userModel.user!!){user ->
@@ -68,6 +70,58 @@ class FirebaseHelper {
                 userExist(false)
             }
         }
+    }
+
+
+                    //User Reminder functions
+
+    fun createUserReminder(reminder:ReminderModel, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        val taskRef = databaseReference.child(reminder.rid!!)
+//        task.id = taskRef.key // Assign the generated key as the task ID
+        taskRef.setValue(reminder)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+
+    fun getUsersReminder(userID:String, callback: (MutableList<ReminderModel>?) -> Unit) {
+        var ref = databaseReference.child("Reminder")
+        ref.addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val reminderList = mutableListOf<ReminderModel>()
+                    if(snapshot.exists()){
+                        for (dataSnapshot in snapshot.children) {
+                            var task = dataSnapshot.getValue(ReminderModel::class.java)
+//                            println(task)
+                            if(task!!.userID.equals(userID)){
+                                task?.let { reminderList.add(it) }
+                            }
+
+                        }
+                        callback(reminderList)
+                    }
+                    callback(reminderList)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle errors
+                }
+            }
+        )
+    }
+
+    fun deleteUserReminder(id: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        databaseReference.child("Reminder").child(id).removeValue()
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
     }
 
 }
