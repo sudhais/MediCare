@@ -38,6 +38,24 @@ class adminMedicine : ComponentActivity() {
         var save: Button = findViewById(R.id.btn_save)
         var image:String? = ""
 
+        var id:Int = intent.getIntExtra("id",0)
+
+        if(id >= 0) {
+            var medicine = intent.getSerializableExtra("medicine") as MedicineModel
+//            println("${medicine}")
+            medName.setText(medicine.name)
+            company.setText(medicine.company)
+            description.setText(medicine.description)
+            stock.setText(medicine.stock.toString())
+            price.setText(medicine.price.toString())
+            date.setText(medicine.date)
+
+            val bytes = android.util.Base64.decode(medicine.image,android.util.Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            imgview.setImageBitmap(bitmap)
+        }
+
+
 
 
         val ActivityResultLauncher = registerForActivityResult<Intent, ActivityResult>(
@@ -71,27 +89,55 @@ class adminMedicine : ComponentActivity() {
         }
 
         save.setOnClickListener {
-            var mid:String = FirebaseDatabase.getInstance().reference.child("Medicine").push().key!!
-            var item = MedicineModel(
-                mid,
-                name = medName.text.toString(),
-                company = company.text.toString(),
-                description = description.text.toString(),
-                price = price.text.toString().toDouble(),
-                stock = stock.text.toString().toInt(),
-                date = date.text.toString(),
-                image
-            )
+            if(id == 0){
+                var mid:String = FirebaseDatabase.getInstance().reference.child("Medicine").push().key!!
+                var item = MedicineModel(
+                    mid,
+                    name = medName.text.toString(),
+                    company = company.text.toString(),
+                    description = description.text.toString(),
+                    price = price.text.toString().toDouble(),
+                    stock = stock.text.toString().toInt(),
+                    date = date.text.toString(),
+                    image
+                )
 
-            //adding to the fire database
-            firebaseHelper.createMedicine(item, {
-                Toast.makeText(this,"Successfully added", Toast.LENGTH_LONG).show()
-                var i = Intent(this, AdminMedHome::class.java)
-                startActivity(i)
-                finish()
-            },{
-                Toast.makeText(this,"Failed to add medicine", Toast.LENGTH_LONG).show()
-            })
+                //adding to the fire database
+                firebaseHelper.createMedicine(item, {
+                    Toast.makeText(this,"Successfully added", Toast.LENGTH_LONG).show()
+                    var i = Intent(this, AdminMedHome::class.java)
+                    startActivity(i)
+                    finish()
+                },{
+                    Toast.makeText(this,"Failed to add medicine", Toast.LENGTH_LONG).show()
+                })
+
+            }else{
+                var medicine = intent.getSerializableExtra("medicine") as MedicineModel
+                var item = MedicineModel(
+                    medicine.medID,
+                    name = medName.text.toString(),
+                    company = company.text.toString(),
+                    description = description.text.toString(),
+                    price = price.text.toString().toDouble(),
+                    stock = stock.text.toString().toInt(),
+                    date = date.text.toString(),
+                    image
+                )
+
+                firebaseHelper.updateMedicine(item, {
+                    Toast.makeText(this,"Successfully updated", Toast.LENGTH_LONG).show()
+                    var i = Intent(this, AdminMedHome::class.java)
+                    startActivity(i)
+                    finish()
+                },{
+                    Toast.makeText(this,"Failed to update medicine", Toast.LENGTH_LONG).show()
+                })
+
+            }
+
+
+
         }
 
 

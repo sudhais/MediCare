@@ -179,4 +179,24 @@ class FirebaseHelper {
             }
         )
     }
+
+    fun deleteMedicine(id: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        databaseReference.child("Medicine").child(id).removeValue()
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+
+    fun updateMedicine(medicine: MedicineModel, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        databaseReference.child("Medicine").child(medicine.medID!!).setValue(medicine)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
 }
