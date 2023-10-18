@@ -1,5 +1,6 @@
 package com.example.medicare.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -45,6 +46,13 @@ class SignIn : ComponentActivity() {
                 firebaseHelper.validateUser(validUser,this){check ->
                     if (check){
                         Toast.makeText(this,"Successfully loged in", Toast.LENGTH_LONG).show()
+
+                        //store the user id
+                        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("userId", validUser.user)
+                        editor.apply()
+
                         intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("userID", validUser.user)
                         startActivity(intent)

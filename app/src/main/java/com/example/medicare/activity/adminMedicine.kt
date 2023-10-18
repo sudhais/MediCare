@@ -50,7 +50,7 @@ class adminMedicine : ComponentActivity() {
             price.setText(medicine.price.toString())
             date.setText(medicine.date)
 
-            val bytes = android.util.Base64.decode(medicine.image,android.util.Base64.DEFAULT)
+            val bytes = Base64.decode(medicine.image,Base64.DEFAULT)
             val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
             imgview.setImageBitmap(bitmap)
         }

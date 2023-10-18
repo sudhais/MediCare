@@ -162,11 +162,9 @@ class FirebaseHelper {
                     if (snapshot.exists()) {
                         for (dataSnapshot in snapshot.children) {
                             var task = dataSnapshot.getValue(MedicineModel::class.java)
-                            println(task)
+//                            println(task)
 
                             task?.let { medicineList.add(it) }
-
-
                         }
                         callback(medicineList)
                     }
