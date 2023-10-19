@@ -2,6 +2,7 @@ package com.example.medicare.database
 
 import android.content.Context
 import android.widget.Toast
+import com.example.medicare.models.CartModel
 import com.example.medicare.models.MedicineModel
 import com.example.medicare.models.ReminderModel
 import com.example.medicare.models.UserModel
@@ -12,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class FirebaseHelper {
-    var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
+    private var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     //User Functions
     fun createUser(
@@ -43,8 +44,8 @@ class FirebaseHelper {
     }
 
 
-    fun getSingleUserData(id: String, callback: (UserModel?) -> Unit) {
-        var ref = databaseReference.child("User").child(id)
+    private fun getSingleUserData(id: String, callback: (UserModel?) -> Unit) {
+        val ref = databaseReference.child("User").child(id)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -99,17 +100,17 @@ class FirebaseHelper {
     }
 
     fun getUsersReminder(userID: String, callback: (MutableList<ReminderModel>?) -> Unit) {
-        var ref = databaseReference.child("Reminder")
+        val ref = databaseReference.child("Reminder")
         ref.addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val reminderList = mutableListOf<ReminderModel>()
                     if (snapshot.exists()) {
                         for (dataSnapshot in snapshot.children) {
-                            var task = dataSnapshot.getValue(ReminderModel::class.java)
+                            val task = dataSnapshot.getValue(ReminderModel::class.java)
 //                            println(task)
                             if (task!!.userID.equals(userID)) {
-                                task?.let { reminderList.add(it) }
+                                task.let { reminderList.add(it) }
                             }
 
                         }
@@ -154,14 +155,14 @@ class FirebaseHelper {
     }
 
     fun getAllMedicine(callback: (MutableList<MedicineModel>?) -> Unit) {
-        var ref = databaseReference.child("Medicine")
+        val ref = databaseReference.child("Medicine")
         ref.addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val medicineList = mutableListOf<MedicineModel>()
                     if (snapshot.exists()) {
                         for (dataSnapshot in snapshot.children) {
-                            var task = dataSnapshot.getValue(MedicineModel::class.java)
+                            val task = dataSnapshot.getValue(MedicineModel::class.java)
 //                            println(task)
 
                             task?.let { medicineList.add(it) }
@@ -176,6 +177,25 @@ class FirebaseHelper {
                 }
             }
         )
+    }
+
+    fun getSingleMedicine(id:String, callback: (MedicineModel?) -> Unit){
+        val ref = databaseReference.child("Medicine").child(id)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val medicine = dataSnapshot.getValue(MedicineModel::class.java)
+                    callback(medicine)
+                } else {
+                    callback(null) // Teacher not found
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle any errors that occur during the data retrieval
+                callback(null)
+            }
+        })
     }
 
     fun deleteMedicine(id: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
@@ -197,4 +217,94 @@ class FirebaseHelper {
                 onFailure(exception)
             }
     }
+
+
+                    //Cart functions
+    fun createCart(cartModel: CartModel,
+                   onSuccess: () -> Unit,
+                   onFailure: (Exception) -> Unit
+                    ){
+                        val cartRef = databaseReference.child("Cart").child("items").child(cartModel.medID!!)
+                        cartRef.setValue(cartModel)
+                            .addOnSuccessListener {
+                                onSuccess()
+                            }
+                            .addOnFailureListener { exception ->
+                                onFailure(exception)
+                            }
+                    }
+
+
+    fun getAllUserCart(userID: String, callback: (MutableList<CartModel>?) -> Unit) {
+        val ref = databaseReference.child("Cart").child("items")
+        ref.addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val cartList = mutableListOf<CartModel>()
+                    if (snapshot.exists()) {
+                        for (dataSnapshot in snapshot.children) {
+                            val cart = dataSnapshot.getValue(CartModel::class.java)
+//                            println(task)
+                            if (cart!!.userID.equals(userID)) {
+                                cart.let { cartList.add(it) }
+                            }
+
+                        }
+                        callback(cartList)
+                    }
+                    callback(cartList)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle errors
+                }
+            }
+        )
+    }
+
+    fun updateUserCart(cartModel: CartModel) {
+        databaseReference.child("Cart").child("items").child(cartModel.medID!!).setValue(cartModel)
+            .addOnSuccessListener {
+            }
+    }
+
+    fun deleteUserCart(id: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        databaseReference.child("Cart").child("items").child(id).removeValue()
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+
+
+    fun getUserTotal(userID: String, callback: (Double?) -> Unit) {
+        val ref = databaseReference.child("Cart").child("items")
+        ref.addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        var total = 0.0
+                        for (dataSnapshot in snapshot.children) {
+                            val cart = dataSnapshot.getValue(CartModel::class.java)
+//                            println(task)
+                            if (cart!!.userID.equals(userID)) {
+                                total += cart.unitPrice!! * cart.qty!!
+                            }
+
+                        }
+                        callback(total)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle errors
+                }
+            }
+        )
+    }
+
+
+
 }

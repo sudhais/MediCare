@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MediCare"
         tools:targetApi="31">
         <activity
+            android:name=".activity.UserCart"
+            android:exported="false" />
+        <activity
             android:name=".activity.MedicineDetails"
             android:exported="false" />
         <activity

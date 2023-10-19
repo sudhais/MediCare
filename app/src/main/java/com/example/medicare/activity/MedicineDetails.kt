@@ -8,10 +8,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.medicare.R
+import com.example.medicare.database.FirebaseHelper
+import com.example.medicare.models.CartModel
 import com.example.medicare.models.MedicineModel
 
 class MedicineDetails : AppCompatActivity() {
+
+    var firebaseHelper = FirebaseHelper()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medicine_details)
@@ -40,10 +45,24 @@ class MedicineDetails : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         val userId = sharedPreferences.getString("userId", "")
 
-        println(userId)
 
         cart.setOnClickListener {
             cart.setImageResource(R.drawable.selected_addcart)
+            var cart = CartModel(
+                medicine.medID,
+                userId,
+                medicine.name,
+                medicine.price,
+                0.0,
+                1,
+                medicine.image
+            )
+            firebaseHelper.createCart(cart, {
+                Toast.makeText(this,"Successfully added to the cart", Toast.LENGTH_LONG).show()
+            },{
+                Toast.makeText(this,"Failed to add cart", Toast.LENGTH_LONG).show()
+            })
+
         }
 
         back.setOnClickListener {

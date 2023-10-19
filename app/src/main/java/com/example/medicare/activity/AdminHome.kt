@@ -1,7 +1,6 @@
 package com.example.medicare.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
@@ -12,10 +11,10 @@ class AdminHome : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_home)
 
-        var btn_med: Button = findViewById(R.id.buttonMedicine)
+        val btn_med: Button = findViewById(R.id.buttonMedicine)
 
         btn_med.setOnClickListener {
-            var i = Intent(this, AdminMedHome::class.java)
+            val i = Intent(this, AdminMedHome::class.java)
             startActivity(i)
         }
 

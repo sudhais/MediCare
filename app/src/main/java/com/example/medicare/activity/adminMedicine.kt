@@ -40,7 +40,7 @@ class adminMedicine : ComponentActivity() {
 
         var id:Int = intent.getIntExtra("id",0)
 
-        if(id >= 0) {
+        if(id != 0) {
             var medicine = intent.getSerializableExtra("medicine") as MedicineModel
 //            println("${medicine}")
             medName.setText(medicine.name)

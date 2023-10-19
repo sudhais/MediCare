@@ -1,7 +1,9 @@
 package com.example.medicare.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicare.R
@@ -23,9 +25,16 @@ class UserMedicine : AppCompatActivity() {
         adapter = UserMedAdapter(mutableListOf())
         recyclerView.adapter = adapter
 
+        var btn_cart:ImageView = findViewById(R.id.btn_cart)
+
         firebaseHelper.getAllMedicine(){medicineList ->
             adapter = UserMedAdapter(medicineList!!)
             recyclerView.adapter = adapter
+        }
+
+        btn_cart.setOnClickListener {
+            var i  = Intent(this, UserCart::class.java)
+            startActivity(i)
         }
     }
 }
