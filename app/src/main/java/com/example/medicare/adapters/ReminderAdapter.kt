@@ -33,7 +33,7 @@ class ReminderAdapter(private val reminderList: MutableList<ReminderModel>) : Re
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var current = reminderList[position]
+        val current = reminderList[position]
         holder.name.text = current.name
         holder.time.text = current.time.toString()
 

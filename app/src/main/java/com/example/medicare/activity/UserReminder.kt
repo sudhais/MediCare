@@ -20,14 +20,14 @@ class UserReminder : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_reminder)
 
-        var add:FloatingActionButton = findViewById(R.id.float_add)
+        val add:FloatingActionButton = findViewById(R.id.float_add)
 
         recyclerView = findViewById(R.id.rv)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = ReminderAdapter(mutableListOf())
         recyclerView.adapter = adapter
 
-        var userID = intent.getStringExtra("userID")
+        val userID = intent.getStringExtra("userID")
         firebaseHelper.getUsersReminder(userID!!){reminderList ->
             adapter = ReminderAdapter(reminderList!!)
             recyclerView.adapter = adapter
@@ -35,7 +35,7 @@ class UserReminder : AppCompatActivity() {
 
         add.setOnClickListener {
             val id:String = FirebaseDatabase.getInstance().reference.child("Reminder").push().key!!.toString()
-            var reminder = ReminderModel(id,"first12","andralene",5)
+            val reminder = ReminderModel(id,"first12","andralene",5)
             firebaseHelper.createUserReminder(reminder,{},{})
         }
     }

@@ -39,7 +39,7 @@ class CartAdapter(private val cartList: MutableList<CartModel>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var current = cartList[position]
+        val  current = cartList[position]
         holder.name.text = current.name
         holder.unitPrice.text = "Rs.${current.unitPrice} per 1 med"
         holder.totalPrice.text = "Total Rs.${current.totalPrice}"
@@ -49,7 +49,7 @@ class CartAdapter(private val cartList: MutableList<CartModel>) : RecyclerView.A
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
         holder.img_view.setImageBitmap(bitmap)
 
-        var medicineModel:MedicineModel = MedicineModel()
+        var medicineModel = MedicineModel()
 
         firebaseHelper.getSingleMedicine(current.medID!!){medicine ->
             medicineModel = medicine!!
@@ -60,9 +60,8 @@ class CartAdapter(private val cartList: MutableList<CartModel>) : RecyclerView.A
 
             if(quan < medicineModel.stock!!) {
                 quan++
-                var value = "%.3f".format(current.unitPrice!! * quan)
-                println("${value}")
-                var newCart = CartModel(
+                val value = "%.3f".format(current.unitPrice!! * quan)
+                val newCart = CartModel(
                     current.medID,
                     current.userID,
                     current.name,
@@ -81,8 +80,8 @@ class CartAdapter(private val cartList: MutableList<CartModel>) : RecyclerView.A
             var quan = current.qty!!
             if(quan > 1){
                 quan--
-                var value = "%.3f".format(current.unitPrice!! * quan)
-                var newCart = CartModel(
+                val value = "%.3f".format(current.unitPrice!! * quan)
+                val newCart = CartModel(
                     current.medID,
                     current.userID,
                     current.name,
@@ -112,9 +111,5 @@ class CartAdapter(private val cartList: MutableList<CartModel>) : RecyclerView.A
         }
 
 
-    }
-
-    fun dataChanged(callback: (Boolean) -> Unit){
-        callback(true)
     }
 }

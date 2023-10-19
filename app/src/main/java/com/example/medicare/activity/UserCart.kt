@@ -36,7 +36,8 @@ class UserCart : AppCompatActivity() {
         }
 
         firebaseHelper.getUserTotal(userId) {
-            total.text = "Total:          ${it.toString()}"
+            val value = "%.3f".format(it).toDouble()
+            total.text = "Total:                      ${value}"
             println(it)
         }
 

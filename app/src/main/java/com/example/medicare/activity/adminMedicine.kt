@@ -3,7 +3,6 @@ package com.example.medicare.activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.widget.Button
@@ -27,21 +26,21 @@ class adminMedicine : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_medicine)
 
-        var medName: EditText = findViewById(R.id.edt_medName)
-        var company: EditText = findViewById(R.id.edt_company)
-        var description: EditText = findViewById(R.id.edt_description)
-        var stock: EditText = findViewById(R.id.edt_stock)
-        var price: EditText = findViewById(R.id.edt_price)
-        var date: EditText = findViewById(R.id.edt_date)
-        var imgview: ImageView = findViewById(R.id.img_view)
-        var select : Button = findViewById(R.id.btn_selectImg)
-        var save: Button = findViewById(R.id.btn_save)
+        val medName: EditText = findViewById(R.id.edt_medName)
+        val company: EditText = findViewById(R.id.edt_company)
+        val description: EditText = findViewById(R.id.edt_description)
+        val stock: EditText = findViewById(R.id.edt_stock)
+        val price: EditText = findViewById(R.id.edt_price)
+        val date: EditText = findViewById(R.id.edt_date)
+        val imgview: ImageView = findViewById(R.id.img_view)
+        val select : Button = findViewById(R.id.btn_selectImg)
+        val save: Button = findViewById(R.id.btn_save)
         var image:String? = ""
 
-        var id:Int = intent.getIntExtra("id",0)
+        val id:Int = intent.getIntExtra("id",0)
 
         if(id != 0) {
-            var medicine = intent.getSerializableExtra("medicine") as MedicineModel
+            val medicine = intent.getSerializableExtra("medicine") as MedicineModel
 //            println("${medicine}")
             medName.setText(medicine.name)
             company.setText(medicine.company)
@@ -49,6 +48,7 @@ class adminMedicine : ComponentActivity() {
             stock.setText(medicine.stock.toString())
             price.setText(medicine.price.toString())
             date.setText(medicine.date)
+            image = medicine.image
 
             val bytes = Base64.decode(medicine.image,Base64.DEFAULT)
             val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
@@ -90,8 +90,8 @@ class adminMedicine : ComponentActivity() {
 
         save.setOnClickListener {
             if(id == 0){
-                var mid:String = FirebaseDatabase.getInstance().reference.child("Medicine").push().key!!
-                var item = MedicineModel(
+                val mid:String = FirebaseDatabase.getInstance().reference.child("Medicine").push().key!!
+                val item = MedicineModel(
                     mid,
                     name = medName.text.toString(),
                     company = company.text.toString(),
@@ -105,7 +105,7 @@ class adminMedicine : ComponentActivity() {
                 //adding to the fire database
                 firebaseHelper.createMedicine(item, {
                     Toast.makeText(this,"Successfully added", Toast.LENGTH_LONG).show()
-                    var i = Intent(this, AdminMedHome::class.java)
+                    val i = Intent(this, AdminMedHome::class.java)
                     startActivity(i)
                     finish()
                 },{
@@ -113,8 +113,8 @@ class adminMedicine : ComponentActivity() {
                 })
 
             }else{
-                var medicine = intent.getSerializableExtra("medicine") as MedicineModel
-                var item = MedicineModel(
+                val medicine = intent.getSerializableExtra("medicine") as MedicineModel
+                val item = MedicineModel(
                     medicine.medID,
                     name = medName.text.toString(),
                     company = company.text.toString(),
@@ -127,7 +127,7 @@ class adminMedicine : ComponentActivity() {
 
                 firebaseHelper.updateMedicine(item, {
                     Toast.makeText(this,"Successfully updated", Toast.LENGTH_LONG).show()
-                    var i = Intent(this, AdminMedHome::class.java)
+                    val i = Intent(this, AdminMedHome::class.java)
                     startActivity(i)
                     finish()
                 },{

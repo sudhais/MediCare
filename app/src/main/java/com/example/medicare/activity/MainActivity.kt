@@ -11,10 +11,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var userID = intent.getStringExtra("userID")
+        val userID = intent.getStringExtra("userID")
 
-        var btn_reminder:Button = findViewById(R.id.buttonReminder)
-        var btn_medicine:Button = findViewById(R.id.buttonMedicine)
+        val btn_reminder:Button = findViewById(R.id.buttonReminder)
+        val btn_medicine:Button = findViewById(R.id.buttonMedicine)
 
         btn_reminder.setOnClickListener {
             val intent = Intent(this, UserReminder::class.java)

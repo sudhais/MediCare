@@ -41,7 +41,7 @@ class AdminMedAdapter(private val medicineList: MutableList<MedicineModel>) : Re
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var current = medicineList[position]
+        val current = medicineList[position]
         holder.name.text = current.name
         holder.company.text = current.company
         holder.date.text = current.date
@@ -67,8 +67,8 @@ class AdminMedAdapter(private val medicineList: MutableList<MedicineModel>) : Re
         }
 
         holder.btn_edit.setOnClickListener {
-            var context = holder.itemView.context
-            var i = Intent(context, adminMedicine::class.java)
+            val context = holder.itemView.context
+            val i = Intent(context, adminMedicine::class.java)
             i.putExtra("id", 3)
             i.putExtra("medicine", current )
             context.startActivity(i)

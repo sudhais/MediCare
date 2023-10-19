@@ -19,18 +19,18 @@ class SignIn : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        var sigup:TextView = findViewById(R.id.txt_signup)
-        var user:EditText = findViewById(R.id.txt_user)
-        var password:EditText = findViewById(R.id.txt_pass)
-        var signin:Button = findViewById(R.id.btn_signin)
+        val sigup:TextView = findViewById(R.id.txt_signup)
+        val user:EditText = findViewById(R.id.txt_user)
+        val password:EditText = findViewById(R.id.txt_pass)
+        val signin:Button = findViewById(R.id.btn_signin)
 
         sigup.setOnClickListener {
-            var intent = Intent(this, SignUp::class.java)
+            val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
 
         signin.setOnClickListener {
-            var validUser = UserModel(
+            val validUser = UserModel(
                 user.text.toString(),
                 "",
                 password.text.toString()

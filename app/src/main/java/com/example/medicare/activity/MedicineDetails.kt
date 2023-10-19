@@ -21,16 +21,16 @@ class MedicineDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medicine_details)
 
-        var medicine = intent.getSerializableExtra("data") as MedicineModel
+        val medicine = intent.getSerializableExtra("data") as MedicineModel
 
-        var name:TextView = findViewById(R.id.txt_name)
-        var company:TextView = findViewById(R.id.txt_company)
-        var price:TextView = findViewById(R.id.txt_price)
-        var description:TextView = findViewById(R.id.txt_desc)
-        var date:TextView = findViewById(R.id.txt_date)
-        var img: ImageView = findViewById(R.id.img_avatar)
-        var cart:ImageView = findViewById(R.id.img_cart)
-        var back : Button = findViewById(R.id.btn_back)
+        val name:TextView = findViewById(R.id.txt_name)
+        val company:TextView = findViewById(R.id.txt_company)
+        val price:TextView = findViewById(R.id.txt_price)
+        val description:TextView = findViewById(R.id.txt_desc)
+        val date:TextView = findViewById(R.id.txt_date)
+        val img: ImageView = findViewById(R.id.img_avatar)
+        val cart:ImageView = findViewById(R.id.img_cart)
+        val back : Button = findViewById(R.id.btn_back)
 
         name.text = medicine.name
         company.text = medicine.company
@@ -48,7 +48,7 @@ class MedicineDetails : AppCompatActivity() {
 
         cart.setOnClickListener {
             cart.setImageResource(R.drawable.selected_addcart)
-            var cart = CartModel(
+            val cart = CartModel(
                 medicine.medID,
                 userId,
                 medicine.name,
@@ -66,7 +66,7 @@ class MedicineDetails : AppCompatActivity() {
         }
 
         back.setOnClickListener {
-            var i = Intent(this, UserMedicine::class.java)
+            val i = Intent(this, UserMedicine::class.java)
             startActivity(i)
         }
     }

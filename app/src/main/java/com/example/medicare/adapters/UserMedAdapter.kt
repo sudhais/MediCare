@@ -33,7 +33,7 @@ class UserMedAdapter(private val medicineList: MutableList<MedicineModel>) : Rec
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var current = medicineList[position]
+        val current = medicineList[position]
         holder.name.text = current.name
         holder.company.text = current.company
         holder.price.text = current.price.toString()
@@ -43,8 +43,8 @@ class UserMedAdapter(private val medicineList: MutableList<MedicineModel>) : Rec
         holder.img_view.setImageBitmap(bitmap)
 
         holder.img_view.setOnClickListener {
-            var context = holder.itemView.context
-            var i = Intent(context, MedicineDetails::class.java)
+            val context = holder.itemView.context
+            val i = Intent(context, MedicineDetails::class.java)
             i.putExtra("data", current)
             context.startActivity(i)
         }

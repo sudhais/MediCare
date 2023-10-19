@@ -7,7 +7,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicare.R
-import com.example.medicare.adapters.AdminMedAdapter
 import com.example.medicare.adapters.UserMedAdapter
 import com.example.medicare.database.FirebaseHelper
 
@@ -25,7 +24,7 @@ class UserMedicine : AppCompatActivity() {
         adapter = UserMedAdapter(mutableListOf())
         recyclerView.adapter = adapter
 
-        var btn_cart:ImageView = findViewById(R.id.btn_cart)
+        val btn_cart:ImageView = findViewById(R.id.btn_cart)
 
         firebaseHelper.getAllMedicine(){medicineList ->
             adapter = UserMedAdapter(medicineList!!)
@@ -33,7 +32,7 @@ class UserMedicine : AppCompatActivity() {
         }
 
         btn_cart.setOnClickListener {
-            var i  = Intent(this, UserCart::class.java)
+            val i  = Intent(this, UserCart::class.java)
             startActivity(i)
         }
     }
