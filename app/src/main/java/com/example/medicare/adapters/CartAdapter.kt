@@ -109,7 +109,5 @@ class CartAdapter(private val cartList: MutableList<CartModel>) : RecyclerView.A
                 Toast.makeText(context, "cart delete failed: ${exception.message}", Toast.LENGTH_SHORT).show()
             })
         }
-
-
     }
 }

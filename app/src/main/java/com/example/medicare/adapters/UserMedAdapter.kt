@@ -12,7 +12,7 @@ import com.example.medicare.R
 import com.example.medicare.activity.MedicineDetails
 import com.example.medicare.models.MedicineModel
 
-class UserMedAdapter(private val medicineList: MutableList<MedicineModel>) : RecyclerView.Adapter<UserMedAdapter.ViewHolder>() {
+class UserMedAdapter(private var medicineList: MutableList<MedicineModel>) : RecyclerView.Adapter<UserMedAdapter.ViewHolder>() {
 
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -50,4 +50,6 @@ class UserMedAdapter(private val medicineList: MutableList<MedicineModel>) : Rec
         }
 
     }
+
+
 }
