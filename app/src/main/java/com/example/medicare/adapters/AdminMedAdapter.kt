@@ -70,7 +70,7 @@ class AdminMedAdapter(private val medicineList: MutableList<MedicineModel>) : Re
             val context = holder.itemView.context
             val i = Intent(context, adminMedicine::class.java)
             i.putExtra("id", 3)
-            i.putExtra("medicine", current )
+            i.putExtra("medID", current.medID )
             context.startActivity(i)
         }
 

@@ -41,22 +41,24 @@ class adminMedicine : ComponentActivity() {
 
         if(id != 0) {
             println(id)
-            val medicine = intent.getSerializableExtra("medicine") as MedicineModel
-//            println("${medicine}")
-            medName.setText(medicine.name)
-            company.setText(medicine.company)
-            description.setText(medicine.description)
-            stock.setText(medicine.stock.toString())
-            price.setText(medicine.price.toString())
-            date.setText(medicine.date)
-            image = medicine.image
+            val medID = intent.getStringExtra("medID")
+            println("${medID}")
+            firebaseHelper.getSingleMedicine(medID!!){medicine ->
 
-            val bytes = android.util.Base64.decode(medicine.image,android.util.Base64.DEFAULT)
-            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            imgview.setImageBitmap(bitmap)
+                medName.setText(medicine!!.name)
+                company.setText(medicine!!.company)
+                description.setText(medicine!!.description)
+                stock.setText(medicine!!.stock.toString())
+                price.setText(medicine!!.price.toString())
+                date.setText(medicine!!.date)
+                image = medicine!!.image
+
+                val bytes = android.util.Base64.decode(medicine!!.image,android.util.Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                imgview.setImageBitmap(bitmap)
+
+            }
         }
-
-
 
 
         val ActivityResultLauncher = registerForActivityResult<Intent, ActivityResult>(
@@ -91,9 +93,9 @@ class adminMedicine : ComponentActivity() {
 
         save.setOnClickListener {
             if(id == 0){
-                val mid:String = FirebaseDatabase.getInstance().reference.child("Medicine").push().key!!
+                val medID = intent.getStringExtra("medID")
                 val item = MedicineModel(
-                    mid,
+                    medID,
                     name = medName.text.toString(),
                     company = company.text.toString(),
                     description = description.text.toString(),
@@ -114,9 +116,9 @@ class adminMedicine : ComponentActivity() {
                 })
 
             }else{
-                val medicine = intent.getSerializableExtra("medicine") as MedicineModel
+                val medID = intent.getStringExtra("medID")
                 val item = MedicineModel(
-                    medicine.medID,
+                    medID,
                     name = medName.text.toString(),
                     company = company.text.toString(),
                     description = description.text.toString(),
