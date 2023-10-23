@@ -27,7 +27,7 @@
             android:name=".activity.AdminMedHome"
             android:exported="false" />
         <activity
-            android:name=".activity.adminMedicine"
+            android:name=".activity.AdminMedicine"
             android:exported="false" />
         <activity
             android:name=".activity.UserReminder"

@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
 
-class adminMedicine : ComponentActivity() {
+class AdminMedicine : ComponentActivity() {
 
     var firebaseHelper = FirebaseHelper()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,18 +42,18 @@ class adminMedicine : ComponentActivity() {
         if(id != 0) {
             println(id)
             val medID = intent.getStringExtra("medID")
-            println("${medID}")
+//            println("${medID}")
             firebaseHelper.getSingleMedicine(medID!!){medicine ->
 
                 medName.setText(medicine!!.name)
-                company.setText(medicine!!.company)
-                description.setText(medicine!!.description)
-                stock.setText(medicine!!.stock.toString())
-                price.setText(medicine!!.price.toString())
-                date.setText(medicine!!.date)
-                image = medicine!!.image
+                company.setText(medicine.company)
+                description.setText(medicine.description)
+                stock.setText(medicine.stock.toString())
+                price.setText(medicine.price.toString())
+                date.setText(medicine.date)
+                image = medicine.image
 
-                val bytes = android.util.Base64.decode(medicine!!.image,android.util.Base64.DEFAULT)
+                val bytes = Base64.decode(medicine.image,Base64.DEFAULT)
                 val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                 imgview.setImageBitmap(bitmap)
 
@@ -61,7 +61,7 @@ class adminMedicine : ComponentActivity() {
         }
 
 
-        val ActivityResultLauncher = registerForActivityResult<Intent, ActivityResult>(
+        val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ){result: ActivityResult ->
             if(result.resultCode == RESULT_OK){
@@ -74,7 +74,7 @@ class adminMedicine : ComponentActivity() {
                     val bytes = stream.toByteArray()
                     image = Base64.encodeToString(bytes, Base64.DEFAULT)
                     imgview.setImageBitmap(myBitmap)
-                    inputStream!!.close()
+//                    inputStream!!.close()
                     Toast.makeText(this,"image selected", Toast.LENGTH_LONG).show()
 
                 }catch (ex: Exception){
@@ -87,7 +87,7 @@ class adminMedicine : ComponentActivity() {
 
             val myfileintent = Intent(Intent.ACTION_GET_CONTENT)
             myfileintent.setType("image/*")
-            ActivityResultLauncher.launch(myfileintent)
+            activityResultLauncher.launch(myfileintent)
 
         }
 

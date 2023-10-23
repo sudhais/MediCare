@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicare.R
-import com.example.medicare.activity.adminMedicine
+import com.example.medicare.activity.AdminMedicine
 import com.example.medicare.database.FirebaseHelper
 import com.example.medicare.models.MedicineModel
 
@@ -68,7 +68,7 @@ class AdminMedAdapter(private val medicineList: MutableList<MedicineModel>) : Re
 
         holder.btn_edit.setOnClickListener {
             val context = holder.itemView.context
-            val i = Intent(context, adminMedicine::class.java)
+            val i = Intent(context, AdminMedicine::class.java)
             i.putExtra("id", 3)
             i.putExtra("medID", current.medID )
             context.startActivity(i)

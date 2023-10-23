@@ -35,11 +35,11 @@ class UserMedicine : AppCompatActivity() {
 
         val btn_cart:ImageView = findViewById(R.id.btn_cart)
 
-        firebaseHelper.getAllMedicine(){medicineList ->
+        firebaseHelper.getAllMedicine{medicineList ->
             medicines.clear()
             originalList.clear()
             medicines.addAll(medicineList!!)
-            originalList.addAll(medicineList!!)
+            originalList.addAll(medicineList)
             adapter.notifyDataSetChanged()
 //            adapter = UserMedAdapter(medicineList!!)
 //            recyclerView.adapter = adapter
