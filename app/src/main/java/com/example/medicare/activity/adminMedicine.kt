@@ -93,7 +93,7 @@ class adminMedicine : ComponentActivity() {
 
         save.setOnClickListener {
             if(id == 0){
-                val medID = intent.getStringExtra("medID")
+                val medID = FirebaseDatabase.getInstance().reference.child("Medicine").push().key
                 val item = MedicineModel(
                     medID,
                     name = medName.text.toString(),
