@@ -1,8 +1,5 @@
 package com.example.medicare.models
 
-import java.io.Serializable
-import java.util.Date
-
 data class MedicineModel(
     var medID:String? = null,
     var name:String? = null,
@@ -12,4 +9,4 @@ data class MedicineModel(
     var stock:Int? = null,
     var date:String? = null,
     var image:String? = null
-): Serializable
+)

@@ -220,18 +220,35 @@ class FirebaseHelper {
 
 
                     //Cart functions
-    fun createCart(cartModel: CartModel,
-                   onSuccess: () -> Unit,
-                   onFailure: (Exception) -> Unit
+    fun createCart(medID:String,
+                   userID: String,
+                   context: Context
                     ){
-                        val cartRef = databaseReference.child("Cart").child("items").child(cartModel.medID!!)
-                        cartRef.setValue(cartModel)
-                            .addOnSuccessListener {
-                                onSuccess()
+                        this.getSingleUserCart(medID){
+                            if(it == null){
+                                this.getSingleMedicine(medID){medicine ->
+                                    val cart = CartModel(
+                                        medicine!!.medID,
+                                        userID,
+                                        medicine.name,
+                                        medicine.price,
+                                        medicine.price,
+                                        1,
+                                        medicine.image
+                                    )
+                                    val cartRef = databaseReference.child("Cart").child("items").child(medID)
+                                    cartRef.setValue(cart)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(context,"Successfully added to the cart", Toast.LENGTH_LONG).show()
+                                        }
+                                        .addOnFailureListener {
+                                            Toast.makeText(context,"Failed to add cart", Toast.LENGTH_LONG).show()
+                                        }
+                                }
+                            }else{
+                                Toast.makeText(context,"medicine already added to the cart", Toast.LENGTH_LONG).show()
                             }
-                            .addOnFailureListener { exception ->
-                                onFailure(exception)
-                            }
+                        }
                     }
 
 
@@ -260,6 +277,25 @@ class FirebaseHelper {
                 }
             }
         )
+    }
+
+    fun getSingleUserCart(id:String, callback: (CartModel?) -> Unit){
+        val ref = databaseReference.child("Cart").child("items").child(id)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val cart = dataSnapshot.getValue(CartModel::class.java)
+                    callback(cart)
+                } else {
+                    callback(null)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle any errors that occur during the data retrieval
+                callback(null)
+            }
+        })
     }
 
     fun updateUserCart(cartModel: CartModel) {

@@ -8,11 +8,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.example.medicare.R
 import com.example.medicare.database.FirebaseHelper
-import com.example.medicare.models.CartModel
-import com.example.medicare.models.MedicineModel
 
 class MedicineDetails : AppCompatActivity() {
 
@@ -21,7 +18,7 @@ class MedicineDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medicine_details)
 
-        val medicine = intent.getSerializableExtra("data") as MedicineModel
+        val medID = intent.getStringExtra("medID")
 
         val name:TextView = findViewById(R.id.txt_name)
         val company:TextView = findViewById(R.id.txt_company)
@@ -32,36 +29,32 @@ class MedicineDetails : AppCompatActivity() {
         val cart:ImageView = findViewById(R.id.img_cart)
         val back : Button = findViewById(R.id.btn_back)
 
-        name.text = medicine.name
-        company.text = medicine.company
-        price.text = medicine.price.toString()
-        description.text = medicine.description
-        date.text =medicine.date
-        val bytes = android.util.Base64.decode(medicine.image,android.util.Base64.DEFAULT)
-        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        img.setImageBitmap(bitmap)
+
+        firebaseHelper.getSingleMedicine(medID!!){medicine ->
+            name.text = medicine!!.name
+            company.text = medicine.company
+            price.text = medicine.price.toString()
+            description.text = medicine.description
+            date.text =medicine.date
+            val bytes = android.util.Base64.decode(medicine.image,android.util.Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            img.setImageBitmap(bitmap)
+
+        }
 
         //getting userid from already stored
         val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         val userId = sharedPreferences.getString("userId", "")
 
+        firebaseHelper.getSingleUserCart(medID){
+            if (it != null){
+                cart.setImageResource(R.drawable.selected_addcart)
+            }
+        }
 
         cart.setOnClickListener {
             cart.setImageResource(R.drawable.selected_addcart)
-            val cart = CartModel(
-                medicine.medID,
-                userId,
-                medicine.name,
-                medicine.price,
-                0.0,
-                1,
-                medicine.image
-            )
-            firebaseHelper.createCart(cart, {
-                Toast.makeText(this,"Successfully added to the cart", Toast.LENGTH_LONG).show()
-            },{
-                Toast.makeText(this,"Failed to add cart", Toast.LENGTH_LONG).show()
-            })
+            firebaseHelper.createCart(medID, userId!!, this)
 
         }
 

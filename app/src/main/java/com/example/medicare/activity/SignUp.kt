@@ -96,13 +96,13 @@ class SignUp : ComponentActivity() {
             if(valid == 4){
                 //displayAlert("success", "successfully registered")
 
-                val user = UserModel(
+                val userModel = UserModel(
                     user.text.toString(),
                     email.text.toString(),
                     password.text.toString(),
                 )
                 //add the user into the firebase
-                firebaseHelper.createUser(user,this ,{
+                firebaseHelper.createUser(userModel,this ,{
 
                 },{
                     Toast.makeText(this,"Failed to registered", Toast.LENGTH_LONG).show()

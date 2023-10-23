@@ -45,7 +45,7 @@ class UserMedAdapter(private var medicineList: MutableList<MedicineModel>) : Rec
         holder.img_view.setOnClickListener {
             val context = holder.itemView.context
             val i = Intent(context, MedicineDetails::class.java)
-            i.putExtra("data", current)
+            i.putExtra("medID", current.medID)
             context.startActivity(i)
         }
 
