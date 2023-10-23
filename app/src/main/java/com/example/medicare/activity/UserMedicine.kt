@@ -5,17 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Menu
+import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicare.R
 import com.example.medicare.adapters.UserMedAdapter
 import com.example.medicare.database.FirebaseHelper
 import com.example.medicare.models.MedicineModel
-import java.util.Locale
+
 
 class UserMedicine : AppCompatActivity() {
 
@@ -28,7 +26,7 @@ class UserMedicine : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_medicine)
 
-        val search: TextView = findViewById(R.id.txt_search)
+        val search: EditText = findViewById(R.id.txt_search)
 
         recyclerView = findViewById(R.id.rv2)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -56,21 +54,21 @@ class UserMedicine : AppCompatActivity() {
         search.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s.toString().isEmpty()){
-                    println(originalList)
                     medicines.clear()
                     medicines.addAll(originalList)
                 }else{
+                    medicines.clear()
+                    medicines.addAll(originalList)
                     val newList = medicines.filter { medicine ->
                         medicine.name!!.contains(s.toString(), true)
                     || medicine.company!!.contains(s.toString(), true)
                         //                    || medicine.description!!.contains(query, true)
                     }
-                    println(newList)
+                    println(s.toString())
                     medicines.clear()
                     medicines.addAll(newList)
 
                 }
-//                adapter.filter(s.toString())
                 adapter.notifyDataSetChanged()
             }
 

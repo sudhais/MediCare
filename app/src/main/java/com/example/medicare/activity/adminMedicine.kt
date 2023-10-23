@@ -40,6 +40,7 @@ class adminMedicine : ComponentActivity() {
         val id:Int = intent.getIntExtra("id",0)
 
         if(id != 0) {
+            println(id)
             val medicine = intent.getSerializableExtra("medicine") as MedicineModel
 //            println("${medicine}")
             medName.setText(medicine.name)
@@ -50,7 +51,7 @@ class adminMedicine : ComponentActivity() {
             date.setText(medicine.date)
             image = medicine.image
 
-            val bytes = Base64.decode(medicine.image,Base64.DEFAULT)
+            val bytes = android.util.Base64.decode(medicine.image,android.util.Base64.DEFAULT)
             val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
             imgview.setImageBitmap(bitmap)
         }

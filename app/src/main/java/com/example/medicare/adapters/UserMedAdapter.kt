@@ -36,7 +36,7 @@ class UserMedAdapter(private var medicineList: MutableList<MedicineModel>) : Rec
         val current = medicineList[position]
         holder.name.text = current.name
         holder.company.text = current.company
-        holder.price.text = current.price.toString()
+        holder.price.text = "Rs.${current.price.toString()}"
 
         val bytes = android.util.Base64.decode(current.image,android.util.Base64.DEFAULT)
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
