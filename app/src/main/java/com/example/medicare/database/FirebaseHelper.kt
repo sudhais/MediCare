@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.tasks.await
 
 class FirebaseHelper {
     private var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
@@ -153,6 +154,17 @@ class FirebaseHelper {
                 onFailure(exception)
             }
     }
+
+//    suspend fun createMedicine(medicine:MedicineModel):Boolean {
+//       return try {
+//            val taskRef = databaseReference.child("Medicine").child(medicine.medID!!)
+//            taskRef.setValue(medicine).await()
+//           true
+//        }catch (e:Exception){
+//            false
+//        }
+//
+//    }
 
     fun getAllMedicine(callback: (MutableList<MedicineModel>?) -> Unit) {
         val ref = databaseReference.child("Medicine")

@@ -16,6 +16,9 @@ import com.example.medicare.R
 import com.example.medicare.database.FirebaseHelper
 import com.example.medicare.models.MedicineModel
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
 
@@ -114,6 +117,15 @@ class AdminMedicine : ComponentActivity() {
                 },{
                     Toast.makeText(this,"Failed to add medicine", Toast.LENGTH_LONG).show()
                 })
+
+//                CoroutineScope(Dispatchers.IO).launch {
+//                    firebaseHelper.createMedicine(item)
+//                }
+//
+//                Toast.makeText(this,"Successfully added", Toast.LENGTH_LONG).show()
+//                val i = Intent(this, AdminMedHome::class.java)
+//                startActivity(i)
+//                finish()
 
             }else{
                 val medID = intent.getStringExtra("medID")
