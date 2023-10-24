@@ -71,8 +71,8 @@
 
     <TextView
         android:id="@+id/txt_totalPrice"
-        android:layout_width="333dp"
-        android:layout_height="48dp"
+        android:layout_width="250dp"
+        android:layout_height="41dp"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="12dp"
         android:paddingTop="10dp"
@@ -82,5 +82,17 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/red"
+        android:text="Pay"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
