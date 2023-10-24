@@ -7,12 +7,14 @@
     android:background="@drawable/bg_view">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="382dp"
+        android:layout_width="0dp"
         android:layout_height="148dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#D7E6E8"
         app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +28,7 @@
                 android:layout_height="143dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"/>
+                tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
                 android:layout_width="240dp"

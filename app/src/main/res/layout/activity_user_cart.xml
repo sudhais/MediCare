@@ -27,7 +27,7 @@
             app:srcCompat="@drawable/unselected_home" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/btn_medicine"
             android:layout_width="61dp"
             android:layout_height="54dp"
             android:layout_marginStart="41dp"
@@ -43,7 +43,7 @@
             android:layout_height="56dp"
             android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/btn_medicine"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.333"
             app:srcCompat="@drawable/selected_addcart" />

@@ -1,8 +1,10 @@
 package com.example.medicare.activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +26,8 @@ class UserCart : AppCompatActivity() {
         adapter = CartAdapter(mutableListOf())
         recyclerView.adapter = adapter
 
+        val btnMedicine: ImageView = findViewById(R.id.btn_medicine)
+
         val total:TextView = findViewById(R.id.txt_totalPrice)
 
         //getting userid from already stored
@@ -39,6 +43,11 @@ class UserCart : AppCompatActivity() {
             val value = "%.3f".format(it).toDouble()
             total.text = "Total:                      ${value}"
             println(it)
+        }
+
+        btnMedicine.setOnClickListener {
+            val i = Intent(this,UserMedicine::class.java)
+            startActivity(i)
         }
 
 
