@@ -74,6 +74,14 @@ class AdminMedAdapter(private val medicineList: MutableList<MedicineModel>) : Re
             context.startActivity(i)
         }
 
+        holder.img_view.setOnClickListener {
+            val context = holder.itemView.context
+            val i = Intent(context, AdminMedicine::class.java)
+            i.putExtra("id", 3)
+            i.putExtra("medID", current.medID )
+            context.startActivity(i)
+        }
+
     }
 
 }
