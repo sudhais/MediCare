@@ -17,17 +17,10 @@ class AdminHome : AppCompatActivity() {
         buttonAddDoctor = findViewById(R.id.buttonAddDoctor)
         val buttonViewMessage = findViewById<Button>(R.id.ViewMessages)
         val btn_med: Button = findViewById(R.id.buttonMedicine)
-        val logout : ImageView = findViewById(R.id.img_logout)
         val btnLab: Button = findViewById(R.id.buttonLab)
 
         btnLab.setOnClickListener {
             val intent = Intent(this, AdminLabTest::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        logout.setOnClickListener {
-            val intent = Intent(this, SignIn::class.java)
             startActivity(intent)
             finish()
         }
@@ -47,6 +40,42 @@ class AdminHome : AppCompatActivity() {
         btn_med.setOnClickListener {
             val i = Intent(this, AdminMedHome::class.java)
             startActivity(i)
+        }
+
+        val home: ImageView = findViewById(R.id.img_home)
+        val article: ImageView = findViewById(R.id.img_article)
+        val lab: ImageView = findViewById(R.id.img_lab)
+        val logout: ImageView = findViewById(R.id.img_logout)
+        val med: ImageView = findViewById(R.id.img_medicine)
+
+        home.setOnClickListener {
+            val i = Intent(this, AdminHome::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        article.setOnClickListener {
+            val i = Intent(this, AdminHome::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        lab.setOnClickListener {
+            val i = Intent(this, AdminLabTest::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        logout.setOnClickListener {
+            val i = Intent(this, SignIn::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        med.setOnClickListener {
+            val i = Intent(this, AdminMedHome::class.java)
+            startActivity(i)
+            finish()
         }
 
     }

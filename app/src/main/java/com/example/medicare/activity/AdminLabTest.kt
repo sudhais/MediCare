@@ -3,13 +3,12 @@ package com.example.medicare.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicare.Adapters.AdminLabAdapter
 import com.example.medicare.R
-import com.example.medicare.adapters.AdminMedAdapter
 import com.example.medicare.models.LabModel
-import com.example.medicare.models.MedicineModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -66,5 +65,42 @@ class AdminLabTest : AppCompatActivity() {
                 }
             }
         )
+
+        val home: ImageView = findViewById(R.id.img_home)
+        val article: ImageView = findViewById(R.id.img_article)
+        val lab: ImageView = findViewById(R.id.img_lab)
+        val logout: ImageView = findViewById(R.id.img_logout)
+        val med: ImageView = findViewById(R.id.img_medicine)
+
+        home.setOnClickListener {
+            val i = Intent(this, AdminHome::class.java)
+            startActivity(i)
+        }
+
+        article.setOnClickListener {
+            val i = Intent(this, AdminHome::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        lab.setOnClickListener {
+            val i = Intent(this, AdminLabTest::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        logout.setOnClickListener {
+            val i = Intent(this, SignIn::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        med.setOnClickListener {
+            val i = Intent(this, AdminMedHome::class.java)
+            startActivity(i)
+            finish()
+        }
     }
+
+
 }
