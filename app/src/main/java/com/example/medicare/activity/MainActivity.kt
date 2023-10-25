@@ -37,19 +37,17 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this, DoctorListUser::class.java)
             startActivity(intent)
         }
-        val userID = intent.getStringExtra("userID")
+
         val btn_reminder:Button = findViewById(R.id.buttonReminder)
         val btn_medicine:Button = findViewById(R.id.buttonMedicine)
 
         btn_reminder.setOnClickListener {
             val intent = Intent(this, UserReminder::class.java)
-            intent.putExtra("userID", userID)
             startActivity(intent)
         }
 
         btn_medicine.setOnClickListener {
             val i = Intent(this, UserMedicine::class.java)
-            intent.putExtra("userID", userID)
             startActivity(i)
         }
     }

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.TextView
 import com.example.medicare.R
 import com.example.medicare.models.MessageModel
 import com.google.firebase.database.DatabaseReference

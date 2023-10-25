@@ -34,6 +34,13 @@ class UserMedicine : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         val btn_cart:ImageView = findViewById(R.id.btn_cart)
+        val imgHome: ImageView = findViewById(R.id.img_home)
+
+        imgHome.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
 
         firebaseHelper.getAllMedicine{medicineList ->
             medicines.clear()

@@ -1,5 +1,6 @@
 package com.example.medicare.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,10 @@ class UserReminder : AppCompatActivity() {
         adapter = ReminderAdapter(mutableListOf())
         recyclerView.adapter = adapter
 
-        val userID = intent.getStringExtra("userID")
+        //getting userid from already stored
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val userID = sharedPreferences.getString("userId", "")
+
         firebaseHelper.getUsersReminder(userID!!){reminderList ->
             adapter = ReminderAdapter(reminderList!!)
             recyclerView.adapter = adapter

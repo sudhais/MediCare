@@ -176,20 +176,6 @@
             app:cornerRadius="50dp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonCart"
-        android:layout_width="158dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/backgroundcolor"
-        android:text="My Cart"
-        android:textColor="@android:color/black"
-        app:cornerRadius="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSecondRow" />
-
     <TextView
         android:id="@+id/textViewAboutUs"
         android:layout_width="wrap_content"

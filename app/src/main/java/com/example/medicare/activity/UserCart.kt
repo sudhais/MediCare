@@ -30,6 +30,14 @@ class UserCart : AppCompatActivity() {
 
         val total:TextView = findViewById(R.id.txt_totalPrice)
 
+        val imgHome: ImageView = findViewById(R.id.img_home)
+
+        imgHome.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+
         //getting userid from already stored
         val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         val userId = sharedPreferences.getString("userId", "")
