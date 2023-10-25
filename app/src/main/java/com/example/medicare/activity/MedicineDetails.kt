@@ -48,7 +48,7 @@ class MedicineDetails : AppCompatActivity() {
 
         firebaseHelper.getSingleUserCart(medID){
             if (it != null){
-                cart.setImageResource(R.drawable.selected_addcart)
+                cart.setImageResource(R.drawable.baseline_medical_services_24)
             }
         }
 
