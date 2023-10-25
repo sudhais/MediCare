@@ -20,5 +20,3 @@ class AdminHome : ComponentActivity() {
 
     }
 }
-
-//testing
