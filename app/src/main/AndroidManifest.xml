@@ -15,6 +15,12 @@
         android:theme="@style/Theme.MediCare"
         tools:targetApi="31">
         <activity
+            android:name=".activity.AddLabActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminLabTest"
+            android:exported="false" />
+        <activity
             android:name=".activity.MessageDetailActivity"
             android:exported="false" />
         <activity

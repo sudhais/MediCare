@@ -45,7 +45,7 @@ class FirebaseHelper {
     }
 
 
-    private fun getSingleUserData(id: String, callback: (UserModel?) -> Unit) {
+     fun getSingleUserData(id: String, callback: (UserModel?) -> Unit) {
         val ref = databaseReference.child("User").child(id)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
