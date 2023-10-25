@@ -7,12 +7,10 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.ActionBarDrawerToggle
 import com.example.medicare.R
 
 class MainActivity : ComponentActivity() {
 
-    lateinit var toggle : ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,7 +37,7 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this, DoctorListUser::class.java)
             startActivity(intent)
         }
-        var userID = intent.getStringExtra("userID")
+        val userID = intent.getStringExtra("userID")
         val btn_reminder:Button = findViewById(R.id.buttonReminder)
         val btn_medicine:Button = findViewById(R.id.buttonMedicine)
 
