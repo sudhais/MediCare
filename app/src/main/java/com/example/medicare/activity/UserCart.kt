@@ -49,7 +49,7 @@ class UserCart : AppCompatActivity() {
 
         firebaseHelper.getUserTotal(userId) {
             val value = "%.3f".format(it).toDouble()
-            total.text = "Total:                      ${value}"
+            total.text = "Total:           ${value}"
             println(it)
         }
 
