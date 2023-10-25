@@ -33,14 +33,43 @@ class UserMedicine : AppCompatActivity() {
         adapter = UserMedAdapter(medicines)
         recyclerView.adapter = adapter
 
-        val btn_cart:ImageView = findViewById(R.id.btn_cart)
-        val imgHome: ImageView = findViewById(R.id.img_home)
 
-        imgHome.setOnClickListener {
+        val home: ImageView = findViewById(R.id.img_home)
+        val article: ImageView = findViewById(R.id.img_article)
+        val cart: ImageView = findViewById(R.id.btn_cart)
+        val logout: ImageView = findViewById(R.id.img_logout)
+        val med: ImageView = findViewById(R.id.img_medicine)
+
+        home.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }
+
+        article.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        cart.setOnClickListener {
+            val i = Intent(this, UserCart::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        logout.setOnClickListener {
+            val i = Intent(this, SignIn::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        med.setOnClickListener {
+            val i = Intent(this, UserMedicine::class.java)
+            startActivity(i)
+            finish()
+        }
+
 
         firebaseHelper.getAllMedicine{medicineList ->
             medicines.clear()
@@ -53,10 +82,6 @@ class UserMedicine : AppCompatActivity() {
 
         }
 
-        btn_cart.setOnClickListener {
-            val i  = Intent(this, UserCart::class.java)
-            startActivity(i)
-        }
 
         search.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

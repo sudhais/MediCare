@@ -24,10 +24,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/unselected_home" />
+            app:srcCompat="@drawable/selected_home" />
 
         <ImageView
-            android:id="@+id/btn_medicine"
+            android:id="@+id/img_medicine"
             android:layout_width="61dp"
             android:layout_height="54dp"
             android:layout_marginStart="24dp"
@@ -38,27 +38,27 @@
             app:srcCompat="@drawable/unselected_medicine" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/img_article"
             android:layout_width="61dp"
             android:layout_height="56dp"
             android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_medicine"
+            app:layout_constraintStart_toEndOf="@+id/img_medicine"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/baseline_newspaper_24" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/img_lab"
             android:layout_width="51dp"
             android:layout_height="59dp"
             android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/img_article"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/img_logout"
             android:layout_width="59dp"
             android:layout_height="46dp"
             app:layout_constraintBottom_toBottomOf="parent"
