@@ -12,6 +12,7 @@
     <color name="colorAccent">#8165c0</color>
     <color name="backgroundcolor">#FCFCFC</color>
     <color name="tealGreen">#B8EFF3</color>
+    <color name="fortnightly">#6B38FB</color>
     <color name="yellow">#FFC801</color>
     <color name="theme">#11105A</color>
 </resources>

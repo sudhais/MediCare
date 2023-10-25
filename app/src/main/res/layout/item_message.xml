@@ -1,0 +1,51 @@
+<!-- item_message.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message Subject"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message Content"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFirstRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonMessageEdit"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/backgroundcolor"
+            android:text="Edit"
+            android:textColor="@android:color/black" />
+
+
+        <Button
+            android:id="@+id/buttonMessageDelete"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/backgroundcolor"
+            android:text="Delete"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+</LinearLayout>
