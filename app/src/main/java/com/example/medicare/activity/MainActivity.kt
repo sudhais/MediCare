@@ -6,10 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toolbar
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
 import com.example.medicare.R
 
 class MainActivity : ComponentActivity() {
@@ -42,6 +40,20 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
         }
         var userID = intent.getStringExtra("userID")
+        val btn_reminder:Button = findViewById(R.id.buttonReminder)
+        val btn_medicine:Button = findViewById(R.id.buttonMedicine)
+
+        btn_reminder.setOnClickListener {
+            val intent = Intent(this, UserReminder::class.java)
+            intent.putExtra("userID", userID)
+            startActivity(intent)
+        }
+
+        btn_medicine.setOnClickListener {
+            val i = Intent(this, UserMedicine::class.java)
+            intent.putExtra("userID", userID)
+            startActivity(i)
+        }
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)

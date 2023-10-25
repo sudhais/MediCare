@@ -21,12 +21,12 @@ class SignUp : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        var user:EditText = findViewById(R.id.txt_user)
-        var email:EditText = findViewById(R.id.txt_email)
-        var password:EditText = findViewById(R.id.txt_pass)
-        var rePassword:EditText = findViewById(R.id.txt_rePass)
-        var signup:Button = findViewById(R.id.btn_signup)
-        var signIn:TextView = findViewById(R.id.txt_signin)
+        val user:EditText = findViewById(R.id.txt_user)
+        val email:EditText = findViewById(R.id.txt_email)
+        val password:EditText = findViewById(R.id.txt_pass)
+        val rePassword:EditText = findViewById(R.id.txt_rePass)
+        val signup:Button = findViewById(R.id.btn_signup)
+        val signIn:TextView = findViewById(R.id.txt_signin)
 
         signup.setOnClickListener {
 
@@ -96,13 +96,13 @@ class SignUp : ComponentActivity() {
             if(valid == 4){
                 //displayAlert("success", "successfully registered")
 
-                val user = UserModel(
+                val userModel = UserModel(
                     user.text.toString(),
                     email.text.toString(),
                     password.text.toString(),
                 )
                 //add the user into the firebase
-                firebaseHelper.createUser(user,this ,{
+                firebaseHelper.createUser(userModel,this ,{
 
                 },{
                     Toast.makeText(this,"Failed to registered", Toast.LENGTH_LONG).show()
@@ -121,7 +121,7 @@ class SignUp : ComponentActivity() {
         }
 
         signIn.setOnClickListener {
-            var intent = Intent(this, SignIn::class.java)
+            val intent = Intent(this, SignIn::class.java)
             startActivity(intent)
         }
     }

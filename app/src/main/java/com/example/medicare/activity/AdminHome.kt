@@ -15,6 +15,7 @@ class AdminHome : AppCompatActivity() {
 
         buttonAddDoctor = findViewById(R.id.buttonAddDoctor)
         val buttonViewMessage = findViewById<Button>(R.id.ViewMessages)
+        val btn_med: Button = findViewById(R.id.buttonMedicine)
 
         buttonAddDoctor.setOnClickListener {
             val intent = Intent(this, AddDoctorActivity::class.java)
@@ -24,6 +25,13 @@ class AdminHome : AppCompatActivity() {
         buttonViewMessage.setOnClickListener{
             val intent = Intent(this, ViewMessagesAdmin::class.java)
             startActivity(intent)
+        }
+
+
+
+        btn_med.setOnClickListener {
+            val i = Intent(this, AdminMedHome::class.java)
+            startActivity(i)
         }
 
     }

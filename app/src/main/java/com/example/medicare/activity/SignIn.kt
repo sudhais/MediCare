@@ -1,5 +1,6 @@
 package com.example.medicare.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -18,18 +19,18 @@ class SignIn : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        var sigup:TextView = findViewById(R.id.txt_signup)
-        var user:EditText = findViewById(R.id.txt_user)
-        var password:EditText = findViewById(R.id.txt_pass)
-        var signin:Button = findViewById(R.id.btn_signin)
+        val sigup:TextView = findViewById(R.id.txt_signup)
+        val user:EditText = findViewById(R.id.txt_user)
+        val password:EditText = findViewById(R.id.txt_pass)
+        val signin:Button = findViewById(R.id.btn_signin)
 
         sigup.setOnClickListener {
-            var intent = Intent(this, SignUp::class.java)
+            val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
 
         signin.setOnClickListener {
-            var validUser = UserModel(
+            val validUser = UserModel(
                 user.text.toString(),
                 "",
                 password.text.toString()
@@ -45,6 +46,13 @@ class SignIn : ComponentActivity() {
                 firebaseHelper.validateUser(validUser,this){check ->
                     if (check){
                         Toast.makeText(this,"Successfully loged in", Toast.LENGTH_LONG).show()
+
+                        //store the user id
+                        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("userId", validUser.user)
+                        editor.apply()
+
                         intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("userID", validUser.user)
                         startActivity(intent)
