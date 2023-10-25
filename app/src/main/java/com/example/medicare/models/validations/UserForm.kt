@@ -11,7 +11,7 @@ class UserForm(
     fun validateUser(): validateForm {
         return if(user.isEmpty()){
             validateForm.Empty("Name is empty")
-        }else if (user.length <= 6) {
+        }else if (user.length < 6) {
             validateForm.Invalid("Name should minimum 6 letters")
         }else{
             validateForm.Valid
@@ -33,9 +33,9 @@ class UserForm(
     //validate password
     fun validatePassword(): validateForm {
         return if(password.isEmpty()){
-            validateForm.Empty("Username is empty")
-        }else if (password.length <= 6) {
-            validateForm.Invalid("Name should minimum 6 letters")
+            validateForm.Empty("Password is empty")
+        }else if (password.length < 6) {
+            validateForm.Invalid("Password should minimum 6 letters")
         }else{
             validateForm.Valid
         }
@@ -45,7 +45,7 @@ class UserForm(
     fun validateRePassword(): validateForm {
         return if(rePassword.isEmpty()){
             validateForm.Empty("password is empty")
-        }else if (rePassword.length <= 6) {
+        }else if (rePassword.length < 6) {
             validateForm.Invalid("password should minimum 6 letters")
         }else if (!password.equals(rePassword)) {
             validateForm.Invalid("Password does not match")

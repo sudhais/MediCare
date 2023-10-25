@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val ivRightCorner = findViewById<ImageView>(R.id.ivRightCorner)
         val buttonChat = findViewById<Button>(R.id.buttonChat)
         val buttonDoctor = findViewById<Button>(R.id.buttonDoctorView)
@@ -40,6 +41,7 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this, DoctorListUser::class.java)
             startActivity(intent)
         }
+        var userID = intent.getStringExtra("userID")
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)

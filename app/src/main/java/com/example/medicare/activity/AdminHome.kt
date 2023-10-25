@@ -26,6 +26,5 @@ class AdminHome : AppCompatActivity() {
             startActivity(intent)
         }
 
-
     }
 }

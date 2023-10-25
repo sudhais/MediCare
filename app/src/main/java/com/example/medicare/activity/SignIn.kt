@@ -46,15 +46,12 @@ class SignIn : ComponentActivity() {
                     if (check){
                         Toast.makeText(this,"Successfully loged in", Toast.LENGTH_LONG).show()
                         intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("userID", validUser.user)
                         startActivity(intent)
                         finish()
                     }
                 }
             }
-            }
         }
-
-
-
-
     }
+}
