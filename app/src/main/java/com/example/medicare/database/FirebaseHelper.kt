@@ -115,7 +115,6 @@ class FirebaseHelper {
                             }
 
                         }
-                        callback(reminderList)
                     }
                     callback(reminderList)
                 }
@@ -179,7 +178,6 @@ class FirebaseHelper {
 
                             task?.let { medicineList.add(it) }
                         }
-                        callback(medicineList)
                     }
                     callback(medicineList)
                 }
@@ -279,7 +277,6 @@ class FirebaseHelper {
                             }
 
                         }
-                        callback(cartList)
                     }
                     callback(cartList)
                 }

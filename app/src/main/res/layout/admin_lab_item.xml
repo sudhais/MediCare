@@ -62,6 +62,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:text="Date"
+            android:textAlignment="viewEnd"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />

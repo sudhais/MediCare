@@ -34,6 +34,13 @@ class AddLabActivity : AppCompatActivity() {
             doctor.setText(intent.getStringExtra("doctor"))
             result.setText(intent.getStringExtra("result"))
             date.setText(intent.getStringExtra("date"))
+
+            // Make the EditText read-only
+            userID.isFocusable = false
+            userID.isFocusableInTouchMode = false
+
+            // Ensure that the keyboard does not appear when clicked
+            userID.inputType = 0 // or InputType.TYPE_NULL
         }
 
         save.setOnClickListener {
@@ -42,7 +49,7 @@ class AddLabActivity : AppCompatActivity() {
                 val id = intent.getStringExtra("labID")
                 val test = LabModel(
                     id,
-                    userID.text.toString(),
+                    intent.getStringExtra("userID"),
                     hospital.text.toString(),
                     doctor.text.toString(),
                     result.text.toString(),

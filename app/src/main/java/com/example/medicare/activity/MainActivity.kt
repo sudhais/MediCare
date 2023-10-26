@@ -19,6 +19,13 @@ class MainActivity : ComponentActivity() {
         val ivRightCorner = findViewById<ImageView>(R.id.ivRightCorner)
         val buttonChat = findViewById<Button>(R.id.buttonChat)
         val buttonDoctor = findViewById<Button>(R.id.buttonDoctorView)
+        val buttonLab: Button = findViewById(R.id.buttonLab)
+
+        buttonLab.setOnClickListener {
+            val intent = Intent(this, UserLabTest::class.java)
+            startActivity(intent)
+            finish() // Close the current activity
+        }
 
 
         ivRightCorner.setOnClickListener {

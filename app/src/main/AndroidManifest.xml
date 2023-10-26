@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MediCare"
         tools:targetApi="31">
         <activity
+            android:name=".activity.UserLabTest"
+            android:exported="false" />
+        <activity
             android:name=".activity.AddLabActivity"
             android:exported="false" />
         <activity

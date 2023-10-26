@@ -39,10 +39,10 @@ class AdminLabAdapter(private val labList: MutableList<LabModel>) : RecyclerView
 
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
        var current = labList[position]
-        holder.hospital.text = current.hospital
-        holder.user.text = current.userID
-        holder.doctor.text = current.doctor
-        holder.result.text = current.result
+        holder.hospital.text = "Hospital Name: ${current.hospital}"
+        holder.user.text = "User Name: ${current.userID}"
+        holder.doctor.text = "Doctor Name: ${current.doctor}"
+        holder.result.text = "Result: ${current.result}"
         holder.date.text = current.date
 
         val context = holder.itemView.context

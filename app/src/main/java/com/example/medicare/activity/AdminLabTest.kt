@@ -55,8 +55,8 @@ class AdminLabTest : AppCompatActivity() {
 
                             task?.let { labList.add(it) }
                         }
-                        callback(labList)
                     }
+                    callback(labList)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
