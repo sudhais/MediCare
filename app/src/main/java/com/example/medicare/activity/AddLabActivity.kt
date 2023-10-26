@@ -9,7 +9,6 @@ import android.widget.Toast
 import com.example.medicare.R
 import com.example.medicare.database.FirebaseHelper
 import com.example.medicare.models.LabModel
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class AddLabActivity : AppCompatActivity() {
@@ -19,12 +18,12 @@ class AddLabActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_lab)
 
-        var hospital : EditText = findViewById(R.id.edt_HospitalName)
-        var userID : EditText = findViewById(R.id.edt_user)
-        var doctor : EditText = findViewById(R.id.edt_doctor)
-        var result : EditText = findViewById(R.id.edt_result)
-        var date : EditText = findViewById(R.id.edt_date)
-        var save: Button = findViewById(R.id.btn_save)
+        val hospital : EditText = findViewById(R.id.edt_HospitalName)
+        val userID : EditText = findViewById(R.id.edt_user)
+        val doctor : EditText = findViewById(R.id.edt_doctor)
+        val result : EditText = findViewById(R.id.edt_result)
+        val date : EditText = findViewById(R.id.edt_date)
+        val save: Button = findViewById(R.id.btn_save)
 
         val id:Int = intent.getIntExtra("id",0)
 
@@ -56,7 +55,7 @@ class AddLabActivity : AppCompatActivity() {
                     date.text.toString()
                 )
 
-                var ref = FirebaseDatabase.getInstance().reference.child("LabTest").child(id!!)
+                val ref = FirebaseDatabase.getInstance().reference.child("LabTest").child(id!!)
                 ref.setValue(test)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Succesfully updated", Toast.LENGTH_LONG).show()
@@ -71,7 +70,7 @@ class AddLabActivity : AppCompatActivity() {
 
                 firebaseHelper.getSingleUserData(user){
                     if (it != null){
-                        var key = FirebaseDatabase.getInstance().reference.child("LabTest").push().key
+                        val key = FirebaseDatabase.getInstance().reference.child("LabTest").push().key
                         val test = LabModel(
                             key,
                             userID.text.toString(),
@@ -81,7 +80,7 @@ class AddLabActivity : AppCompatActivity() {
                             date.text.toString()
                         )
 
-                        var ref = FirebaseDatabase.getInstance().reference.child("LabTest").child(key!!)
+                        val ref = FirebaseDatabase.getInstance().reference.child("LabTest").child(key!!)
                         ref.setValue(test)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Succesfully Added", Toast.LENGTH_LONG).show()

@@ -7,10 +7,8 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.medicare.Adapters.AdminLabAdapter
 import com.example.medicare.Adapters.UserLabAdapter
 import com.example.medicare.R
-import com.example.medicare.models.CartModel
 import com.example.medicare.models.LabModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,7 +34,7 @@ class UserLabTest : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         this.getAllUserLabTest(userId!!){
-            adapter = UserLabAdapter(it!!)
+            adapter = UserLabAdapter(it)
             recyclerView.adapter = adapter
         }
 
@@ -79,8 +77,8 @@ class UserLabTest : AppCompatActivity() {
 
     }
 
-    fun getAllUserLabTest(userID:String, callback:(MutableList<LabModel>) -> Unit){
-        var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
+    private fun getAllUserLabTest(userID:String, callback:(MutableList<LabModel>) -> Unit){
+        val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
         val ref = databaseReference.child("LabTest")
         ref.addValueEventListener(
             object : ValueEventListener {

@@ -38,7 +38,7 @@ class AdminLabAdapter(private val labList: MutableList<LabModel>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-       var current = labList[position]
+        val current = labList[position]
         holder.hospital.text = "Hospital Name: ${current.hospital}"
         holder.user.text = "User Name: ${current.userID}"
         holder.doctor.text = "Doctor Name: ${current.doctor}"
@@ -49,7 +49,7 @@ class AdminLabAdapter(private val labList: MutableList<LabModel>) : RecyclerView
 
         holder.delete.setOnClickListener {
 
-            var ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("LabTest")
+            val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("LabTest")
              ref.child(current.id!!).removeValue()
                 .addOnSuccessListener {
                     Toast.makeText(context, "Deleted succesfully", Toast.LENGTH_SHORT).show()

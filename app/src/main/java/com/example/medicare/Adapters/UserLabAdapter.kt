@@ -28,7 +28,7 @@ class UserLabAdapter(private val labList: MutableList<LabModel>) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var current = labList[position]
+        val current = labList[position]
         holder.hospital.text = "Hospital Name: ${current.hospital}"
         holder.user.text = "User Name: ${current.userID}"
         holder.doctor.text = "Doctor Name: ${current.doctor}"

@@ -42,8 +42,8 @@ class AdminLabTest : AppCompatActivity() {
 
     }
 
-    fun getAllTest(callback: (MutableList<LabModel>?) -> Unit) {
-        var ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("LabTest")
+    private fun getAllTest(callback: (MutableList<LabModel>?) -> Unit) {
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().reference.child("LabTest")
         ref.addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
