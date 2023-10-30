@@ -51,7 +51,7 @@ class UserLabTest : AppCompatActivity() {
         }
 
         article.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
+            val i = Intent(this, ArticleMainActivity::class.java)
             startActivity(i)
             finish()
         }

@@ -78,7 +78,7 @@ class AdminLabTest : AppCompatActivity() {
         }
 
         article.setOnClickListener {
-            val i = Intent(this, AdminHome::class.java)
+            val i = Intent(this, MainArticleAdminActivity::class.java)
             startActivity(i)
             finish()
         }

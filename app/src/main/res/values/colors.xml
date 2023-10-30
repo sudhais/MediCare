@@ -16,4 +16,12 @@
     <color name="yellow">#FFC801</color>
     <color name="theme">#11105A</color>
     <color name="red">#E01A0B</color>
+<!--    <color name="colorPrimary">#1BB55C</color>-->
+<!--    <color name="colorPrimaryDark">#005661</color>-->
+<!--    <color name="colorAccent">#00838e</color>-->
+    <color name="main_light_background">#FFFFFF</color>s
+    <color name="main_color">#1BB55C</color>
+    <color name="delete_btn">#ADE84848</color>
+    <color name="main_black_background">#27090707</color>
+
 </resources>

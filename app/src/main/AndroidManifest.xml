@@ -15,6 +15,21 @@
         android:theme="@style/Theme.MediCare"
         tools:targetApi="31">
         <activity
+            android:name=".activity.OneArticleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ArticleMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ArticleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BarangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainArticleAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.UserLabTest"
             android:exported="false" />
         <activity

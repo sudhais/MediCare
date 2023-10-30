@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
         val buttonChat = findViewById<Button>(R.id.buttonChat)
         val buttonDoctor = findViewById<Button>(R.id.buttonDoctorView)
         val buttonLab: Button = findViewById(R.id.buttonLab)
+        val buttonArticle: Button = findViewById(R.id.buttonArticle)
 
         buttonLab.setOnClickListener {
             val intent = Intent(this, UserLabTest::class.java)
@@ -27,6 +28,10 @@ class MainActivity : ComponentActivity() {
             finish() // Close the current activity
         }
 
+        buttonArticle.setOnClickListener{
+            val i = Intent(this, ArticleMainActivity::class.java)
+            startActivity(i)
+        }
 
         ivRightCorner.setOnClickListener {
             // Handle the click on the ImageView (logout)

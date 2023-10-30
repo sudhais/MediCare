@@ -15,6 +15,7 @@ class AdminHome : AppCompatActivity() {
         setContentView(R.layout.activity_admin_home)
 
         buttonAddDoctor = findViewById(R.id.buttonAddDoctor)
+//        val buttonArticle: Button = findViewById(R.id.buttonArticle)
         val buttonViewMessage = findViewById<Button>(R.id.ViewMessages)
         val btn_med: Button = findViewById(R.id.buttonMedicine)
         val btnLab: Button = findViewById(R.id.buttonLab)
@@ -35,7 +36,10 @@ class AdminHome : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+//        buttonArticle.setOnClickListener {
+//            val i = Intent(this, MainArticleAdminActivity::class.java)
+//            startActivity(i)
+//        }
 
         btn_med.setOnClickListener {
             val i = Intent(this, AdminMedHome::class.java)
@@ -55,7 +59,7 @@ class AdminHome : AppCompatActivity() {
         }
 
         article.setOnClickListener {
-            val i = Intent(this, AdminHome::class.java)
+            val i = Intent(this, MainArticleAdminActivity::class.java)
             startActivity(i)
             finish()
         }
