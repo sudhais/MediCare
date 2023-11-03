@@ -31,9 +31,9 @@ class SignIn : ComponentActivity() {
 
         signin.setOnClickListener {
             val validUser = UserModel(
-                user.text.toString(),
+                user.text.toString().trim(),
                 "",
-                password.text.toString()
+                password.text.toString().trim()
             )
 
             if (validUser.user.equals("admin") && validUser.password.equals("admin")){
